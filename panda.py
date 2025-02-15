@@ -15,8 +15,8 @@ class PageType(enum.Enum):
     EMAIL = 4
     EMPLOYEE = 5
 
-# survey_code = input("enter survey code (with dashes):\n")
-survey_code = "2315-6862-2243-0112-0712-7402"
+survey_code = input("enter survey code (with dashes):\n")
+# survey_code = "2315-6862-2243-0112-0712-7402"
 survey_code = survey_code.replace(" ", "")
 # survey_code = survey_code.replace("-", "")
 print(f"processing survey code {survey_code}")
@@ -99,6 +99,10 @@ def complete_email() -> None:
             for i in inputs:
                 if i.get_attribute("type") == "text":
                     i.send_keys(email_address)
+            print("completed survey")
+            time.sleep(1)
+            driver.quit()
+            exit(1)
 
 def complete_employee() -> None:
     # <input type="text">
@@ -123,7 +127,6 @@ while True:
     elif page_type == PageType.EMAIL:
         print("Email")
         complete_email()
-        input("press enter to complete survey")
     elif page_type == PageType.EMPLOYEE:
         print("Employee")
         complete_employee()
